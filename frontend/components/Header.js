@@ -1,4 +1,5 @@
 import Nav from "./Nav";
+import Cart from "./Cart";
 import styled from "styled-components";
 import Link from "next/link";
 import Router from "next/router";
@@ -66,7 +67,7 @@ const Header = () => (
     <div className='sub-bar'>
       <p>Search</p>
     </div>
-    <div>Cart</div>
+    <Cart />
   </StyledHeader>
 );
 
