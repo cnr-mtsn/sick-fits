@@ -101,11 +101,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _styles_Table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/Table */ "./components/styles/Table.js");
 /* harmony import */ var _styles_SickButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles/SickButton */ "./components/styles/SickButton.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
 var _jsxFileName = "/Users/connermatson/Projects/Advanced-React/sick-fits/frontend/components/Permissions.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -115,13 +125,25 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  mutation updatePermissions($permissions: [Permission], $userId: ID!) {\n    updatePermissions(permissions: $permissions, userId: $userId) {\n      id\n      permissions\n      name\n      email\n    }\n  }\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
 
 function _templateObject() {
   var data = _taggedTemplateLiteral(["\n  query {\n    users {\n      id\n      name\n      email\n      permissions\n    }\n  }\n"]);
@@ -140,103 +162,107 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
+
 var ALL_USERS_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_2___default()(_templateObject());
-var possiblePermissions = ["ADMIN", "USER", "ITEMCREATE", "ITEMUPDATE", "ITEMDELETE", "PERMISSIONUPDATE"];
+var UPDATE_PERMISSIONS_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_2___default()(_templateObject2());
+var possiblePermissions = ["ADMIN", "USER", "ITEM_CREATE", "ITEM_UPDATE", "ITEM_DELETE", "PERMISSION_UPDATE"];
 
 
 var Permissions = function Permissions(props) {
-  return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_0__["Query"], {
+  return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_0__["Query"], {
     query: ALL_USERS_QUERY,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 42
     },
     __self: this
   }, function (_ref) {
     var data = _ref.data,
         loading = _ref.loading,
         error = _ref.error;
-    return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 32
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_ErrorMessage__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      error: error,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 33
-      },
-      __self: this
-    }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 34
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 35
-      },
-      __self: this
-    }, "Manage Permissions"), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_styles_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 36
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("thead", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 37
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("tr", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 38
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("th", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 39
-      },
-      __self: this
-    }, "Name"), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("th", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 40
-      },
-      __self: this
-    }, "Email"), possiblePermissions.map(function (permission) {
-      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("th", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 42
-        },
-        __self: this
-      }, permission);
-    }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("th", {
+    return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 44
       },
       __self: this
-    }, "\u2193"))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("tbody", {
+    }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_ErrorMessage__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      error: error,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 45
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 46
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("h2", {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 47
       },
       __self: this
-    }, data.users.map(function (user) {
-      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(User, {
-        user: user,
+    }, "Manage Permissions"), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_styles_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 48
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("thead", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 49
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("tr", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 50
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("th", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 51
+      },
+      __self: this
+    }, "Name"), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("th", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 52
+      },
+      __self: this
+    }, "Email"), possiblePermissions.map(function (permission) {
+      return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("th", {
+        key: permission,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 54
+        },
+        __self: this
+      }, permission);
+    }), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("th", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 56
+      },
+      __self: this
+    }, "\u2193"))), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("tbody", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 59
+      },
+      __self: this
+    }, data.users.map(function (user) {
+      return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(UserPermissions, {
+        user: user,
+        key: user.id,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 61
         },
         __self: this
       });
@@ -244,79 +270,170 @@ var Permissions = function Permissions(props) {
   });
 };
 
-var User =
+var UserPermissions =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(User, _React$Component);
+  _inherits(UserPermissions, _React$Component);
 
-  function User() {
-    _classCallCheck(this, User);
+  function UserPermissions() {
+    var _getPrototypeOf2;
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(User).apply(this, arguments));
+    var _this;
+
+    _classCallCheck(this, UserPermissions);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(UserPermissions)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      permissions: _this.props.user.permissions
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handlePermissionChange", function (e) {
+      //add permission to permission state
+      //  OR
+      //remove from permissions state
+      var checkbox = e.target;
+
+      var updatedPermissions = _toConsumableArray(_this.state.permissions);
+
+      if (checkbox.checked) {
+        updatedPermissions.push(checkbox.value);
+      } else {
+        updatedPermissions = updatedPermissions.filter(function (permission) {
+          return permission !== checkbox.value;
+        });
+      }
+
+      _this.setState({
+        permissions: updatedPermissions
+      });
+
+      console.log(updatedPermissions);
+    });
+
+    return _this;
   }
 
-  _createClass(User, [{
+  _createClass(UserPermissions, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var user = this.props.user;
-      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("tr", {
+      return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_0__["Mutation"], {
+        mutation: UPDATE_PERMISSIONS_MUTATION,
+        variables: {
+          permissions: this.state.permissions,
+          userId: this.props.user.id
+        },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 63
+          lineNumber: 106
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("td", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 64
-        },
-        __self: this
-      }, user.name), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("td", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 65
-        },
-        __self: this
-      }, user.email), possiblePermissions.map(function (permission) {
-        return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("td", {
+      }, function (updatePermissions, _ref2) {
+        var loading = _ref2.loading,
+            error = _ref2.error;
+        return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_6___default.a.Fragment, null, error && react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("tr", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 67
+            lineNumber: 116
           },
           __self: this
-        }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("label", {
-          for: "".concat(user.id, "-permission-").concat(permission),
+        }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("td", {
+          colspan: "8",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 68
+            lineNumber: 117
           },
           __self: this
-        }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
-          type: "checkbox",
+        }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_ErrorMessage__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          error: error,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 69
+            lineNumber: 118
           },
           __self: this
-        })));
-      }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("td", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 73
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_styles_SickButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 74
-        },
-        __self: this
-      }, "Update")));
+        }))), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("tr", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 122
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("td", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 123
+          },
+          __self: this
+        }, user.name), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("td", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 124
+          },
+          __self: this
+        }, user.email), possiblePermissions.map(function (permission) {
+          return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("td", {
+            key: permission,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 126
+            },
+            __self: this
+          }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("label", {
+            htmlFor: "".concat(user.id, "-permission-").concat(permission),
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 127
+            },
+            __self: this
+          }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("input", {
+            id: "".concat(user.id, "-permission-").concat(permission),
+            type: "checkbox",
+            checked: _this2.state.permissions.includes(permission),
+            value: permission,
+            onChange: _this2.handlePermissionChange,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 128
+            },
+            __self: this
+          })));
+        }), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("td", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 138
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_styles_SickButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          type: "button",
+          disabled: loading,
+          onClick: updatePermissions,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 139
+          },
+          __self: this
+        }, "Updat", loading ? "ing" : "e"))));
+      });
     }
   }]);
 
-  return User;
-}(react__WEBPACK_IMPORTED_MODULE_5___default.a.Component);
+  return UserPermissions;
+}(react__WEBPACK_IMPORTED_MODULE_6___default.a.Component);
+
+_defineProperty(UserPermissions, "propTypes", {
+  user: prop_types__WEBPACK_IMPORTED_MODULE_5___default.a.shape({
+    name: prop_types__WEBPACK_IMPORTED_MODULE_5___default.a.string,
+    email: prop_types__WEBPACK_IMPORTED_MODULE_5___default.a.string,
+    id: prop_types__WEBPACK_IMPORTED_MODULE_5___default.a.string,
+    permissions: prop_types__WEBPACK_IMPORTED_MODULE_5___default.a.array
+  }).isRequired
+});
 
 /* harmony default export */ __webpack_exports__["default"] = (Permissions);
 
@@ -686,7 +803,7 @@ var User = function User(props) {
   });
 };
 
-User.PropTypes = {
+User.propTypes = {
   children: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func.isRequired
 };
 /* harmony default export */ __webpack_exports__["default"] = (User);
@@ -749,7 +866,7 @@ __webpack_require__.r(__webpack_exports__);
 var Table = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].table.withConfig({
   displayName: "Table",
   componentId: "sc-1jvbtk5-0"
-})(["border-spacing:0;width:100%;border:1px solid ", ";thead{font-size:10px;}td,th{border-bottom:1px solid ", ";border-right:1px solid ", ";padding:10px 5px;position:relative;text-align:center;&:last-child{border-right:none;width:150px;button{width:100%;}}}tr{&:hover{background:", ";}}"], function (props) {
+})(["border-spacing:0;width:100%;border:1px solid ", ";thead{font-size:10px;}td,th{border-bottom:1px solid ", ";border-right:1px solid ", ";padding:5px;position:relative;text-align:center;&:last-child{border-right:none;width:150px;button{width:100%;}}}label{padding:10px 5px;display:block;}tr{&:hover{background:", ";}}"], function (props) {
   return props.theme.offWhite;
 }, function (props) {
   return props.theme.offWhite;
