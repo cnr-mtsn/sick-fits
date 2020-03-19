@@ -23,8 +23,30 @@ const BigButton = styled.button`
   }
 `;
 
+const update = (cache, payload) => {
+  //1. read cache
+  const data = cache.readQuery({ query: CURRENT_USER_QUERY });
+  console.log(data);
+  //2. remove that item from cart
+  const cartItemId = payload.data.removeFromCart.id;
+  data.me.cart = data.me.cart.filter(cartItem => cartItem.id !== cartItemId);
+  //3. write it back to cache
+  cache.writeQuery({ query: CURRENT_USER_QUERY, data });
+};
+
 const RemoveFromCart = props => (
-  <Mutation mutation={REMOVE_FROM_CART_MUTATION} variables={{ id: props.id }}>
+  <Mutation
+    mutation={REMOVE_FROM_CART_MUTATION}
+    variables={{ id: props.id }}
+    update={update}
+    optimisticResponse={{
+      __typename: "Mutation",
+      removeFromCart: {
+        __typename: "CartItem",
+        id: props.id,
+      },
+    }}
+  >
     {(removeFromCart, { loading, error }) => (
       <BigButton
         disabled={loading}

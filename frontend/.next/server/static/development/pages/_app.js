@@ -856,15 +856,41 @@ var BigButton = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.button.
   return props.theme.red;
 });
 
+var update = function update(cache, payload) {
+  //1. read cache
+  var data = cache.readQuery({
+    query: _User__WEBPACK_IMPORTED_MODULE_5__["CURRENT_USER_QUERY"]
+  });
+  console.log(data); //2. remove that item from cart
+
+  var cartItemId = payload.data.removeFromCart.id;
+  data.me.cart = data.me.cart.filter(function (cartItem) {
+    return cartItem.id !== cartItemId;
+  }); //3. write it back to cache
+
+  cache.writeQuery({
+    query: _User__WEBPACK_IMPORTED_MODULE_5__["CURRENT_USER_QUERY"],
+    data: data
+  });
+};
+
 var RemoveFromCart = function RemoveFromCart(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Mutation"], {
     mutation: REMOVE_FROM_CART_MUTATION,
     variables: {
       id: props.id
     },
+    update: update,
+    optimisticResponse: {
+      __typename: "Mutation",
+      removeFromCart: {
+        __typename: "CartItem",
+        id: props.id
+      }
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 38
     },
     __self: this
   }, function (removeFromCart, _ref) {
@@ -880,7 +906,7 @@ var RemoveFromCart = function RemoveFromCart(props) {
       title: "Delete Item",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 29
+        lineNumber: 51
       },
       __self: this
     }, "\xD7");
