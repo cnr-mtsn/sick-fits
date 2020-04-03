@@ -38,8 +38,7 @@ class Items extends Component {
         <Pagination page={this.props.page} />
         <Query
           query={ALL_ITEMS_QUERY}
-          // fetchPolicy="network-only"
-
+          fetchPolicy='network-only'
           variables={{
             skip: this.props.page * perPage - perPage,
           }}
@@ -52,7 +51,6 @@ class Items extends Component {
                 {data.items.map(item => (
                   <Item item={item} key={item.id} />
                 ))}
-                {console.log(this.props.page)}
               </ItemsList>
             );
           }}
