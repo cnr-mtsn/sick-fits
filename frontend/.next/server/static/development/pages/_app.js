@@ -269,16 +269,16 @@ var Cart = function Cart() {
         lineNumber: 58
       },
       __self: this
-    }, Object(_lib_formatMoney__WEBPACK_IMPORTED_MODULE_4__["default"])(Object(_lib_calcTotalPrice__WEBPACK_IMPORTED_MODULE_3__["default"])(me.cart))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TakeMyMoney__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }, Object(_lib_formatMoney__WEBPACK_IMPORTED_MODULE_4__["default"])(Object(_lib_calcTotalPrice__WEBPACK_IMPORTED_MODULE_3__["default"])(me.cart))), me.cart.length && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TakeMyMoney__WEBPACK_IMPORTED_MODULE_12__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 59
+        lineNumber: 60
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_SickButton__WEBPACK_IMPORTED_MODULE_10__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 61
       },
       __self: this
     }, "Checkout"))));
@@ -1485,6 +1485,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./User */ "./components/User.js");
 var _jsxFileName = "/Users/connermatson/Projects/Advanced-React/sick-fits/frontend/components/TakeMyMoney.js";
 
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n    mutation createOrder($token: String!) {\n      createOrder(token: $token) {\n        id\n        charge\n        total\n        items {\n          id\n          title\n        }\n      }\n    }\n  "]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
 
 
 
@@ -1502,35 +1515,56 @@ var TakeMyMoney = function TakeMyMoney(props) {
     }, 0);
   }
 
-  var onToken = function onToken(res) {
-    console.log("on token called");
+  var onToken = function onToken(res, createOrder) {
+    console.log("on token called"); //manually call the mutation once we have the stripe token
+
+    createOrder({
+      variables: {
+        token: res.id
+      }
+    }).catch(function (err) {
+      alert(err.message);
+    });
   };
 
+  var CREATE_ORDER_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_6___default()(_templateObject());
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_User__WEBPACK_IMPORTED_MODULE_9__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 42
     },
     __self: this
   }, function (_ref) {
     var me = _ref.data.me;
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_stripe_checkout__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      amount: Object(_lib_calcTotalPrice__WEBPACK_IMPORTED_MODULE_7__["default"])(me.cart),
-      email: me.email,
-      name: "Sick Fits",
-      description: "Order of ".concat(totalItems(me.cart), " items!"),
-      image: me.cart[0].item && me.cart[0].item.image,
-      stripeKey: "pk_test_hG3XcYfyWOuDzEInEtMaCJyD00D57m2eiz",
-      currency: "USD",
-      token: function token(res) {
-        return onToken(res);
-      },
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Mutation"], {
+      mutation: CREATE_ORDER_MUTATION,
+      refetchQueries: [{
+        query: _User__WEBPACK_IMPORTED_MODULE_9__["CURRENT_USER_QUERY"]
+      }],
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 22
+        lineNumber: 44
       },
       __self: this
-    }, props.children);
+    }, function (createOrder) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_stripe_checkout__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        amount: Object(_lib_calcTotalPrice__WEBPACK_IMPORTED_MODULE_7__["default"])(me.cart),
+        email: me.email,
+        name: "Sick Fits",
+        description: "Order of ".concat(totalItems(me.cart), " items!"),
+        image: me.cart.length && me.cart[0].item && me.cart[0].item.image,
+        stripeKey: "pk_test_hG3XcYfyWOuDzEInEtMaCJyD00D57m2eiz",
+        currency: "USD",
+        token: function token(res) {
+          return onToken(res, createOrder);
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 49
+        },
+        __self: this
+      }, props.children);
+    });
   });
 };
 
