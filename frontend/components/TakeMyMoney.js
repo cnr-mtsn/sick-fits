@@ -13,15 +13,22 @@ const TakeMyMoney = props => {
   function totalItems(cart) {
     return cart.reduce((tally, cartItem) => tally + cartItem.quantity, 0);
   }
-  const onToken = (res, createOrder) => {
+  const onToken = async (res, createOrder) => {
+    NProgress.start();
     console.log("on token called");
+    console.log(res.id);
     //manually call the mutation once we have the stripe token
-    createOrder({
+    const order = await createOrder({
       variables: {
         token: res.id,
       },
     }).catch(err => {
       alert(err.message);
+    });
+    console.log(order);
+    Router.push({
+      pathname: "/order",
+      query: { id: order.data.createOrder.id },
     });
   };
 
