@@ -5,7 +5,6 @@ const OrderPage = props => (
   <div>
     <PleaseSignIn>
       <Order id={props.query.id} />
-      <p>single order</p>
     </PleaseSignIn>
   </div>
 );

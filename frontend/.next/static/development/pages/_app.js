@@ -1447,15 +1447,12 @@ var TakeMyMoney = function TakeMyMoney(props) {
 
             case 5:
               order = _context.sent;
-              console.log(order);
-              next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push({
-                pathname: "/order",
-                query: {
-                  id: order.data.createOrder.id
-                }
-              });
+              console.log(order); // Router.push({
+              //   pathname: "/order",
+              //   query: { id: order.data.createOrder.id },
+              // });
 
-            case 8:
+            case 7:
             case "end":
               return _context.stop();
           }

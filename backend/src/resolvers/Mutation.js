@@ -320,7 +320,6 @@ const Mutations = {
     const orderItems = user.cart.map(cartItem => {
       const orderItem = {
         ...cartItem.item,
-        quantity: cartItem.quantity,
         user: { connect: { id: userId } },
       };
       delete orderItem.id;

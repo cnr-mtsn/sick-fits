@@ -26,10 +26,10 @@ const TakeMyMoney = props => {
       alert(err.message);
     });
     console.log(order);
-    Router.push({
-      pathname: "/order",
-      query: { id: order.data.createOrder.id },
-    });
+    // Router.push({
+    //   pathname: "/order",
+    //   query: { id: order.data.createOrder.id },
+    // });
   };
 
   const CREATE_ORDER_MUTATION = gql`
