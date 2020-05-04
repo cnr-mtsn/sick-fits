@@ -55,10 +55,9 @@ const OrderList = props => {
                           {order.items.reduce((a, b) => a + b.quantity, 0)}{" "}
                           Items
                         </p>
-                        <p>{order.items.length}</p>
                         <p>
-                          Ordered {formatDistance(order.createdAt, new Date())}{" "}
-                          ago
+                          {order.items.length} total{" "}
+                          {order.items.length === 1 ? "item" : "items"}
                         </p>
                         <p>{formatMoney(order.total)}</p>
                       </div>

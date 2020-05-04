@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -325,23 +325,17 @@ var OrderList = function OrderList(props) {
           lineNumber: 58
         },
         __self: this
-      }, order.items.length), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, order.items.length, " total", " ", order.items.length === 1 ? "item" : "items"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 59
-        },
-        __self: this
-      }, "Ordered ", Object(date_fns__WEBPACK_IMPORTED_MODULE_2__["formatDistance"])(order.createdAt, new Date()), " ", "ago"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 63
+          lineNumber: 62
         },
         __self: this
       }, Object(_lib_formatMoney__WEBPACK_IMPORTED_MODULE_5__["default"])(order.total))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "images",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 65
+          lineNumber: 64
         },
         __self: this
       }, order.items.map(function (item) {
@@ -351,7 +345,7 @@ var OrderList = function OrderList(props) {
           alt: item.title,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 67
+            lineNumber: 66
           },
           __self: this
         });
@@ -850,7 +844,7 @@ var OrderPage = function OrderPage(props) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!*******************************!*\
   !*** multi ./pages/orders.js ***!
   \*******************************/

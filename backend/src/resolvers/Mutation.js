@@ -320,22 +320,21 @@ const Mutations = {
     const orderItems = user.cart.map(cartItem => {
       const orderItem = {
         ...cartItem.item,
+        quantity: cartItem.quantity,
         user: { connect: { id: userId } },
       };
       delete orderItem.id;
       return orderItem;
     });
     // 5. create order
-    const order = await ctx.db.mutation
-      .createOrder({
-        data: {
-          total: charge.amount,
-          charge: charge.id,
-          items: { create: orderItems },
-          user: { connect: { id: userId } },
-        },
-      })
-      .catch(err => Error(`Something went wrong`));
+    const order = await ctx.db.mutation.createOrder({
+      data: {
+        total: charge.amount,
+        charge: charge.id,
+        items: { create: orderItems },
+        user: { connect: { id: userId } },
+      },
+    });
     // 6. clean up - clear user's cart
     // 7. delete cart Items
     const cartItemIds = user.cart.map(cartItem => cartItem.id);
